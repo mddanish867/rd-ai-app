@@ -25,25 +25,40 @@ export default function App() {
     }
   }, []);
 
-  
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-100">
-        <Header isAuthenticated = {userEmail}/>
-        <div className="flex flex-1">
-          <main className="flex-1 flex p-6">
+        {/* Header Component */}
+        <Header isAuthenticated={userEmail} />
+
+        {/* Main Content Area */}
+        <div className="flex flex-1 flex-col lg:flex-row">
+          {/* Sidebar: Hidden on small devices, visible on large screens */}
+          <aside className="hidden lg:block lg:w-1/4 p-4 bg-white">
+            <Sidebar />
+          </aside>
+
+          {/* Main Content Area: Adjust padding and margin for small and large devices */}
+          <main className="flex-1 p-4 lg:p-6">
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
-              <Route path="/sidebar" element={<Sidebar />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/ai-assistant" element={<AIAssistant />} />
+              <Route path="/project-list" element={<ProjectList />} />
+              <Route path="/datasets" element={<Datasets />} />
+              <Route path="/competitions" element={<Competitions />} />
+              <Route path="/learning" element={<Learning />} />
+              <Route path="/profile" element={<Profile />} />
 
               {/* Add other routes for authenticated users */}
-              
             </Routes>
           </main>
         </div>
+
+        {/* Footer Component */}
         <Footer />
       </div>
     </Router>
